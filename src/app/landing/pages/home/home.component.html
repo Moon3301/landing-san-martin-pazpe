@@ -1,0 +1,227 @@
+<div class="page-wrapper">
+
+  <!-- ── NAV ─────────────────────────────────────────────── -->
+  <nav class="navbar">
+    <div class="navbar__logo">
+      <img src="assets/images/pazpe-white.png" class="navbar__logo__img">
+    </div>
+    <a href="#registro" class="navbar__cta">Registro</a>
+  </nav>
+
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <section class="hero" id="registro">
+    <!-- Left: event info -->
+    <div class="hero__left">
+      <div class="hero__content">
+        <div class="brand-logo">
+          <!-- <span class="brand-logo__san">San</span>
+          <span class="brand-logo__martin">MARTÍN</span>
+          <span class="brand-logo__sub">PUEBLO LIBRE APARTMENTS</span> -->
+          <img src="assets/images/logo-san-martin.png"  class="brand-logo__img"> 
+        </div>
+
+        <div class="event-info">
+          <p class="event-info__title">
+            Evento de <img src="assets/images/copas-1.png" class="event-info__icon-img" alt="copas">
+            <br><em class="event-info__highlight">lanzamiento</em>
+          </p>
+          <ul class="event-info__details">
+            <li>Jueves 28 de Mayo</li>
+            <li>Hora: 7:00 PM</li>
+            <li>Pueblo Libre</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- decorative bottom pattern -->
+      <img src="assets/images/patron evento 1.png" class="hero__pattern" alt="">
+    </div>
+
+    <!-- Right: photo + form -->
+    <div class="hero__right">
+      <div class="hero__bg"></div>
+
+      <!-- Mobile-only date bar — shows below photo on small screens -->
+      <div class="hero__date-bar">
+        <div class="hero__date-bar__row">
+          <span>Jueves 28 de Mayo</span>
+          <span class="hero__date-bar__sep">|</span>
+          <span>Hora: 7:00 PM</span>
+        </div>
+        <div class="hero__date-bar__location">Pueblo Libre</div>
+      </div>
+
+      <div class="hero__form-card">
+        <h2 class="form-card__title">Regístrate y obtén los descuentos exclusivos en este evento.</h2>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="reg-form" novalidate>
+
+          <div class="reg-form__row">
+            <div class="reg-form__field">
+              <label class="field-label">Nombres*</label>
+              <input
+                formControlName="nombres"
+                type="text"
+                [class.is-invalid]="submitted && f['nombres'].errors"
+              />
+              <span class="field-error" *ngIf="submitted && f['nombres'].errors">Ingresa tu nombre</span>
+            </div>
+            <div class="reg-form__field">
+              <label class="field-label">Apellidos*</label>
+              <input
+                formControlName="apellidos"
+                type="text"
+                [class.is-invalid]="submitted && f['apellidos'].errors"
+              />
+              <span class="field-error" *ngIf="submitted && f['apellidos'].errors">Ingresa tus apellidos</span>
+            </div>
+          </div>
+
+          <div class="reg-form__row">
+            <div class="reg-form__field">
+              <label class="field-label">DNI o C.E*</label>
+              <input
+                formControlName="dni"
+                type="text"
+                [class.is-invalid]="submitted && f['dni'].errors"
+              />
+              <span class="field-error" *ngIf="submitted && f['dni'].errors">DNI inválido</span>
+            </div>
+            <div class="reg-form__field">
+              <label class="field-label">Celular*</label>
+              <input
+                formControlName="celular"
+                type="tel"
+                [class.is-invalid]="submitted && f['celular'].errors"
+              />
+              <span class="field-error" *ngIf="submitted && f['celular'].errors">Nro. inválido</span>
+            </div>
+          </div>
+
+          <div class="reg-form__field reg-form__field--full">
+            <label class="field-label">E-mail*</label>
+            <input
+              formControlName="email"
+              type="email"
+              [class.is-invalid]="submitted && f['email'].errors"
+            />
+            <span class="field-error" *ngIf="submitted && f['email'].errors">Email inválido</span>
+          </div>
+
+          <div class="reg-form__field reg-form__field--full">
+            <label class="field-label">Distrito de procedencia*</label>
+            <input
+              formControlName="distrito"
+              type="text"
+              [class.is-invalid]="submitted && f['distrito'].errors"
+            />
+            <span class="field-error" *ngIf="submitted && f['distrito'].errors">Ingresa tu distrito</span>
+          </div>
+
+          <div class="reg-form__field reg-form__field--full">
+            <label class="field-label">Propósito de compra*</label>
+            <select
+              formControlName="proposito"
+              [class.is-invalid]="submitted && f['proposito'].errors"
+            >
+              <option value="" disabled selected></option>
+              <option value="vivienda">Vivienda propia</option>
+              <option value="inversion">Inversión</option>
+              <option value="familiar">Uso familiar</option>
+              <option value="otro">Otro</option>
+            </select>
+            <span class="field-error" *ngIf="submitted && f['proposito'].errors">Selecciona una opción</span>
+          </div>
+
+          <div class="reg-form__checks">
+            <label class="check-label">
+              <input type="checkbox" formControlName="terminos" />
+              <span>Acepto los términos y condiciones.</span>
+            </label>
+            <span class="field-error" *ngIf="submitted && f['terminos'].errors">Debes aceptar los términos</span>
+
+            <label class="check-label">
+              <input type="checkbox" formControlName="autorizacion" />
+              <span>Autorizo el tratamiento de mis datos según la política de privacidad.</span>
+            </label>
+          </div>
+
+          <div class="form-btn-wrap">
+            <button type="submit" class="btn-submit">Enviar</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FEATURES ─────────────────────────────────────────── -->
+  <section class="features">
+    <img src="assets/images/inferior izquierdo 1.png" class="features__deco features__deco--left" alt="">
+    <img src="assets/images/inferior derecho 1.png" class="features__deco features__deco--right" alt="">
+
+    <p class="features__headline">
+      ¡Sé el primero en acceder a los <strong>precios exclusivos</strong> de lanzamiento!
+    </p>
+
+    <div class="features__grid">
+
+      <!-- Icono 1: Ubicación -->
+      <div class="feature-item">
+        <div class="feature-item__icon feature-item__icon--ubicacion">
+          <svg viewBox="0 0 79 98" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M39.2047 0C17.5599 0.0234759 0.0234759 17.5599 0 39.2047C0 71.8127 34.803 98 39.2047 98C43.6064 98 78.4094 71.8127 78.4094 39.2047C78.3742 17.5599 60.8377 0.0234759 39.2047 0ZM39.2047 56.3538C29.7322 56.3538 22.0556 48.6772 22.0556 39.2047C22.0556 29.7322 29.7322 22.0556 39.2047 22.0556C48.6772 22.0556 56.3538 29.7322 56.3538 39.2047C56.3538 48.6655 48.6655 56.3421 39.2047 56.3538Z" fill="#ED6334"/>
+          </svg>
+        </div>
+        <p>Jr. José Mariano Arce 110,<br>Pueblo Libre</p>
+      </div>
+
+      <!-- Icono 2: Flats y Dúplex -->
+      <div class="feature-item">
+        <div class="feature-item__icon feature-item__icon--flats">
+          <svg viewBox="0 0 128 97" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M61.9971 66.7577L2.06237 36.9221C0.802032 36.2919 0 34.9972 0 33.5879C0 32.1787 0.802032 30.8839 2.06237 30.2538L61.9971 0.395287C63.0512 -0.131762 64.2886 -0.131762 65.3312 0.395287L125.266 30.2423C126.526 30.8725 127.328 32.1672 127.328 33.5765C127.328 34.9858 126.526 36.2805 125.266 36.9106L65.3312 66.7577C64.2771 67.2847 63.0397 67.2847 61.9971 66.7577Z" fill="#ED6334"/>
+            <path d="M125.277 60.0893L110.199 52.6763L68.6768 73.4374C65.5833 74.9842 61.871 75.0415 58.6629 73.4374L17.1406 52.6763L2.06237 60.0893C0.802032 60.7195 0 62.0142 0 63.4235C0 64.8328 0.802032 66.1275 2.06237 66.7577L61.9971 96.6047C63.0512 97.1317 64.2886 97.1317 65.3312 96.6047L125.266 66.7577C126.526 66.1275 127.328 64.8328 127.328 63.4235C127.328 62.0142 126.526 60.7195 125.266 60.0893H125.277Z" fill="#ED6334"/>
+          </svg>
+        </div>
+        <p>Flats y<br>Dúplex</p>
+      </div>
+
+      <!-- Icono 3: Metros cuadrados -->
+      <div class="feature-item">
+        <div class="feature-item__icon feature-item__icon--desde">
+          <svg viewBox="0 0 108 98" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.4523 97.9878H79.8752V80.0821H107.434V12.5862H12.4523V97.9878Z" fill="#ED6334"/>
+            <path d="M107.434 0H12.4523V6.29313H107.434V0Z" fill="#ED6334"/>
+            <path d="M6.29313 12.5862H0V97.9999H6.29313V12.5862Z" fill="#ED6334"/>
+          </svg>
+        </div>
+        <p>Desde 40 m2<br>hasta 82 m2</p>
+      </div>
+
+      <!-- Icono 4: Descuentos -->
+      <div class="feature-item">
+        <div class="feature-item__icon feature-item__icon--descuentos">
+          <svg viewBox="0 0 98 98" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M94.0555 8.10904L97.0007 5.16387C98.1281 4.03642 98.2892 2.18419 97.2308 0.999217C96.0918 -0.266285 94.1476 -0.300799 92.9511 0.884172L89.8909 3.95589C90.6272 4.60015 91.3519 5.26741 92.0537 5.96919C92.7555 6.67097 93.4228 7.38425 94.067 8.13205L94.0555 8.10904Z" fill="#ED6334"/>
+            <path d="M46.8754 37.9405C48.8657 36.583 48.8657 33.6954 46.8754 32.3378C45.7709 31.59 44.2523 31.59 43.1364 32.3378C41.1461 33.6954 41.1461 36.583 43.1364 37.9405C44.2408 38.6883 45.7709 38.6883 46.8754 37.9405Z" fill="#ED6334"/>
+            <path d="M42.63 68.462C41.0769 70.0152 41.3645 72.7417 43.5044 73.8577C44.4363 74.3409 45.5867 74.3409 46.5186 73.8577C48.6584 72.7302 48.946 70.0152 47.3929 68.462C46.0814 67.1505 43.9416 67.1505 42.63 68.462Z" fill="#ED6334"/>
+            <path d="M80.6988 21.4659C82.459 24.9978 81.8147 29.427 78.7775 32.3032C75.2686 35.628 69.5624 35.6395 66.0535 32.3032C62.2454 28.7022 62.1879 22.7084 65.8694 19.0269C68.757 16.1393 73.0828 15.564 76.5456 17.2897L85.7148 8.10907C72.1624 -3.32646 51.8683 -2.6707 39.0983 10.0994L2.67481 46.5343C-0.891604 50.1007 -0.891604 55.8875 2.67481 59.4539L38.546 95.3252C42.1125 98.8916 47.8993 98.8916 51.4657 95.3252L87.8891 58.9017C100.659 46.1317 101.326 25.8376 89.8794 12.2852L80.6988 21.4659ZM37.4416 29.8067C41.1806 24.5951 48.8426 24.5951 52.5701 29.8067C54.8365 32.9704 54.8365 37.3307 52.5701 40.4944C48.8311 45.706 41.1806 45.706 37.4416 40.4944C35.1752 37.3422 35.1752 32.9704 37.4416 29.8067ZM52.5701 76.1816C48.8311 81.3932 41.1806 81.3932 37.4416 76.1816C35.1752 73.0293 35.1752 68.6576 37.4416 65.4938C41.1806 60.2823 48.8311 60.2823 52.5701 65.4938C54.8365 68.6461 54.8365 73.0178 52.5701 76.1816ZM65.4092 53.6902L25.2468 58.1539C23.7167 58.3265 22.1981 57.2566 21.991 55.5769C21.7839 53.8972 23.1184 52.4592 24.7406 52.2866L64.5809 47.8573C66.1685 47.6848 67.7216 48.7087 67.9747 50.2848C68.2508 51.9645 67.0659 53.5061 65.3977 53.6902H65.4092Z" fill="#ED6334"/>
+          </svg>
+        </div>
+        <p>Descuentos por<br>lanzamiento</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────────── -->
+  <footer class="footer">
+    <span>© Copyright 2024 - Todos los derechos reservados</span>
+    <nav class="footer__links">
+      <a href="#">Términos y condiciones</a>
+      <a href="#">Políticas de privacidad</a>
+    </nav>
+  </footer>
+
+</div>

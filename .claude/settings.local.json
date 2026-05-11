@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.figma.com)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Read(//c/Users/CarlosAcevedo/Desktop/env-dev/PAZ PERU/landing-san-martin-paz-peru/.claude/**)",
+      "Read(//c/Users/CarlosAcevedo/AppData/Roaming/Claude/**)"
+    ]
+  }
+}
