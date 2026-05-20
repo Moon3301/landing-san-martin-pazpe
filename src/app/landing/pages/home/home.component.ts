@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FormDataWeb } from '../../dto/form.dto';
+import { HomeService } from '../../../services/home.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +15,11 @@ export class HomeComponent implements OnInit {
   form!: FormGroup;
   submitted = false;
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router,
+    private homeService: HomeService
+  ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -31,9 +37,34 @@ export class HomeComponent implements OnInit {
 
   get f() { return this.form.controls; }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     this.submitted = true;
     if (this.form.invalid) return;
+
+    console.log('Formulario válido:', this.form.value);
+
+    const formData: FormDataWeb = {
+      document: this.form.value.dni,
+      email: this.form.value.email,
+      fname: this.form.value.nombres,
+      lname: this.form.value.apellidos,
+      phone: this.form.value.celular,
+      proyecto: 'San Martin',
+      proyectoID: '30',
+      sourceId: '35',
+      utmCampaing: 'organico',
+      utmMedium: 'proforma web',
+      utmSource: 'organico',
+      observation:  'Proposito de compra: '+this.form.value.proposito + ' - Distrito: ' + this.form.value.distrito,
+      unidad: '1',
+      unidadID: '1',
+      tipologia: '1',
+      tipologiaID: '1',
+
+    }
+
+    await this.homeService.sendFormData(formData);
+
     this.router.navigate(['/gracias']);
   }
 }
