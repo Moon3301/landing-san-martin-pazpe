@@ -147,8 +147,15 @@
           </div>
 
           <div class="form-btn-wrap">
-            <button type="submit" class="btn-submit">Enviar</button>
+            <button type="submit" class="btn-submit" [disabled]="loading">
+              <span class="btn-spinner" *ngIf="loading"></span>
+              <span *ngIf="!loading">Enviar</span>
+            </button>
           </div>
+
+          <p class="submit-error-msg" *ngIf="submitError">
+            Ocurrió un error al enviar el formulario. Por favor intenta nuevamente.
+          </p>
         </form>
 
       </div>

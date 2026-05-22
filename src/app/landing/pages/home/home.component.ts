@@ -13,10 +13,12 @@ import { HomeService } from '../../../services/home.service';
 export class HomeComponent implements OnInit {
 
   form!: FormGroup;
-  submitted = false;
+  submitted  = false;
+  loading    = false;
+  submitError = false;
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private router: Router,
     private homeService: HomeService
   ) {}
@@ -38,33 +40,37 @@ export class HomeComponent implements OnInit {
   get f() { return this.form.controls; }
 
   async onSubmit(): Promise<void> {
-    this.submitted = true;
+    this.submitted    = true;
+    this.submitError  = false;
     if (this.form.invalid) return;
 
-    console.log('Formulario válido:', this.form.value);
-
     const formData: FormDataWeb = {
-      document: this.form.value.dni,
-      email: this.form.value.email,
-      fname: this.form.value.nombres,
-      lname: this.form.value.apellidos,
-      phone: this.form.value.celular,
-      proyecto: 'San Martin',
-      proyectoID: '30',
-      sourceId: '35',
+      document:    this.form.value.dni,
+      email:       this.form.value.email,
+      fname:       this.form.value.nombres,
+      lname:       this.form.value.apellidos,
+      phone:       this.form.value.celular,
+      proyecto:    'San Martin',
+      proyectoID:  '30',
+      sourceId:    '35',
       utmCampaing: 'organico',
-      utmMedium: 'proforma web',
-      utmSource: 'organico',
-      observation:  'Proposito de compra: '+this.form.value.proposito + ' - Distrito: ' + this.form.value.distrito,
-      unidad: '1',
-      unidadID: '1',
-      tipologia: '1',
+      utmMedium:   'proforma web',
+      utmSource:   'organico',
+      observation: 'Proposito de compra: ' + this.form.value.proposito + ' - Distrito: ' + this.form.value.distrito,
+      unidad:      '1',
+      unidadID:    '1',
+      tipologia:   '1',
       tipologiaID: '1',
+    };
 
+    this.loading = true;
+    try {
+      await this.homeService.sendFormData(formData);
+      this.router.navigate(['/gracias']);
+    } catch {
+      this.submitError = true;
+    } finally {
+      this.loading = false;
     }
-
-    await this.homeService.sendFormData(formData);
-
-    this.router.navigate(['/gracias']);
   }
 }

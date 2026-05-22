@@ -364,6 +364,36 @@
 
 .btn-submit:hover  { background: #d4532a; }
 .btn-submit:active { transform: scale(0.97); }
+.btn-submit:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Spinner inside button */
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}
+
+.btn-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: btn-spin 0.7s linear infinite;
+  vertical-align: middle;
+}
+
+/* Error message below button */
+.submit-error-msg {
+  color: #ffb3a7;
+  font-size: 0.72rem;
+  text-align: center;
+  margin-top: 0.4rem;
+  line-height: 1.4;
+}
 
 /* ══════════════════════════════════════════════
    FEATURES SECTION
