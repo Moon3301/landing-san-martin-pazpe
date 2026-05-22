@@ -15,4 +15,5 @@ export interface FormDataWeb {
     unidadID?: string;
     tipologia?: string;
     tipologiaID?: string;
+    sendEmail?: boolean;
 }

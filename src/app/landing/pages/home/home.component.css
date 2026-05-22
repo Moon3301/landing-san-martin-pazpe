@@ -178,11 +178,63 @@
   padding: 2rem 2.5rem;
 }
 
-.hero__bg {
+/* Hero background carousel */
+.hero__bg-carousel {
   position: absolute;
   inset: 0;
-  background: url('/assets/images/piscina-san-martin.jpg') center / cover no-repeat;
   z-index: 0;
+  overflow: hidden;
+}
+
+.hero__bg-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+
+.hero__bg-slide.is-active {
+  opacity: 1;
+}
+
+.hero__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Carousel pagination dots */
+.carousel-dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+}
+
+.carousel-dot:hover {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.carousel-dot.is-active {
+  background: #ffffff;
+  border-color: #ffffff;
+  transform: scale(1.3);
 }
 
 /* Mobile date bar — hidden on desktop, visible on mobile below photo */
@@ -566,10 +618,11 @@
     justify-content: flex-start;
   }
 
-  /* Photo full-width, taller on mobile */
-  .hero__bg {
+  /* Photo carousel full-width, taller on mobile */
+  .hero__bg-carousel {
     position: relative;
     height: 300px;
+    flex-shrink: 0;
   }
 
   /* Date bar — visible only on mobile, between photo and form */

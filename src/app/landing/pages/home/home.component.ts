@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormDataWeb } from '../../dto/form.dto';
@@ -10,12 +10,20 @@ import { HomeService } from '../../../services/home.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   form!: FormGroup;
-  submitted  = false;
-  loading    = false;
+  submitted   = false;
+  loading     = false;
   submitError = false;
+
+  /* ── Hero carousel ────────────────────────────────── */
+  heroImages = [
+    'assets/images/piscina-san-martin.jpg',
+    'assets/images/zona-de-parrillas.jpeg',
+  ];
+  currentImageIndex = 0;
+  private carouselTimer: ReturnType<typeof setInterval> | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -24,6 +32,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.startCarousel();
     this.form = this.fb.group({
       nombres:     ['', [Validators.required, Validators.minLength(2)]],
       apellidos:   ['', [Validators.required, Validators.minLength(2)]],
@@ -61,6 +70,7 @@ export class HomeComponent implements OnInit {
       unidadID:    '1',
       tipologia:   '1',
       tipologiaID: '1',
+      sendEmail: false
     };
 
     this.loading = true;
@@ -72,5 +82,23 @@ export class HomeComponent implements OnInit {
     } finally {
       this.loading = false;
     }
+  }
+
+  /* ── Carousel helpers ───────────────────────────────── */
+  goToSlide(index: number): void {
+    this.currentImageIndex = index;
+    // Reset the auto-play so it doesn't fire immediately after a manual click
+    if (this.carouselTimer) clearInterval(this.carouselTimer);
+    this.startCarousel();
+  }
+
+  private startCarousel(): void {
+    this.carouselTimer = setInterval(() => {
+      this.currentImageIndex = (this.currentImageIndex + 1) % this.heroImages.length;
+    }, 5000);
+  }
+
+  ngOnDestroy(): void {
+    if (this.carouselTimer) clearInterval(this.carouselTimer);
   }
 }

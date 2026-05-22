@@ -39,7 +39,27 @@
 
     <!-- Right: photo + form -->
     <div class="hero__right">
-      <div class="hero__bg"></div>
+      <!-- Hero background carousel -->
+      <div class="hero__bg-carousel">
+        <div
+          *ngFor="let img of heroImages; let i = index"
+          class="hero__bg-slide"
+          [class.is-active]="i === currentImageIndex"
+        >
+          <img [src]="img" alt="" class="hero__bg-img">
+        </div>
+
+        <!-- Pagination dots -->
+        <div class="carousel-dots">
+          <button
+            *ngFor="let img of heroImages; let i = index"
+            class="carousel-dot"
+            [class.is-active]="i === currentImageIndex"
+            (click)="goToSlide(i)"
+            [attr.aria-label]="'Imagen ' + (i + 1)"
+          ></button>
+        </div>
+      </div>
 
       <!-- Mobile-only date bar — shows below photo on small screens -->
       <div class="hero__date-bar">
@@ -203,7 +223,7 @@
             <path d="M6.29313 12.5862H0V97.9999H6.29313V12.5862Z" fill="#ED6334"/>
           </svg>
         </div>
-        <p>Desde 40 m2<br>hasta 82 m2</p>
+        <p>Desde 40 m2<br>hasta 97 m2</p>
       </div>
 
       <!-- Icono 4: Descuentos -->
@@ -224,10 +244,10 @@
 
   <!-- ── FOOTER ────────────────────────────────────────────── -->
   <footer class="footer">
-    <span>© Copyright 2024 - Todos los derechos reservados</span>
+    <span>© Copyright 2026 - Todos los derechos reservados</span>
     <nav class="footer__links">
-      <a href="#">Términos y condiciones</a>
-      <a href="#">Políticas de privacidad</a>
+      <a href="https://paz.pe/promotions">Términos y condiciones</a>
+      <a href="https://paz.pe/politica-privacidad">Políticas de privacidad</a>
     </nav>
   </footer>
 
