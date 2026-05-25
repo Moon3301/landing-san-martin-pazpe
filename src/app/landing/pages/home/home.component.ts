@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   /* ── Hero carousel ────────────────────────────────── */
   heroImages = [
-    'assets/images/piscina-san-martin.jpg',
+    'assets/images/piscina-san-martin.webp',
     'assets/images/zona-de-parrillas.jpeg',
   ];
   currentImageIndex = 0;
